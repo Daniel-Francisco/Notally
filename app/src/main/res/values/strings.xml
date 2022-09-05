@@ -17,6 +17,7 @@
     <string name="unarchive">Unarchive</string>
     <string name="delete_all">Delete all</string>
     <string name="delete_forever">Delete forever</string>
+    <string name="delete_permanently">Delete Permanantly</string>
 
     <!-- Pinning -->
     <string name="pin">Pin</string>
