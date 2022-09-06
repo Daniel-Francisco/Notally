@@ -32,6 +32,11 @@ abstract class NotallyModel(app: Application) : AndroidViewModel(app) {
     var timestamp = Date().time
     var labels = HashSet<String>()
 
+    var name = String()
+    var phoneNumber = String()
+
+    var email = String()
+
 
     abstract fun getBaseNote(): BaseNote
 
@@ -43,6 +48,10 @@ abstract class NotallyModel(app: Application) : AndroidViewModel(app) {
         pinned = baseNote.pinned
         timestamp = baseNote.timestamp
         labels = baseNote.labels
+
+        name = baseNote.name
+        phoneNumber = baseNote.phoneNumber
+        email = baseNote.email
     }
 
 

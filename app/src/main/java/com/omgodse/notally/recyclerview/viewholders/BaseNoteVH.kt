@@ -44,6 +44,7 @@ class BaseNoteVH(
         when (baseNote.type) {
             Type.NOTE -> bindNote(baseNote)
             Type.LIST -> bindList(baseNote)
+            Type.PHONENUMBER -> bindContacts(baseNote)
         }
 
         binding.LabelGroup.bindLabels(baseNote.labels)
@@ -67,6 +68,26 @@ class BaseNoteVH(
         }
     }
 
+    private fun bindContacts(note: BaseNote) {
+        binding.LinearLayout.isVisible = false
+
+        binding.Title.text = note.title
+        binding.Note.text = note.body.applySpans(note.spans)
+
+        binding.Title.isVisible = note.title.isNotEmpty()
+        binding.Note.isVisible = note.body.isNotEmpty()
+
+
+        binding.phonenumber.text = note.phoneNumber
+        binding.phonenumber.isVisible = note.phoneNumber.isNotEmpty()
+        binding.iconphone.isVisible = note.phoneNumber.isNotEmpty()
+
+        binding.contactname.text=  note.name
+        binding.contactname.isVisible = note.name.isNotEmpty()
+        binding.iconperson.isVisible = note.name.isNotEmpty()
+
+    }
+
     private fun bindNote(note: BaseNote) {
         binding.LinearLayout.isVisible = false
 
@@ -75,7 +96,15 @@ class BaseNoteVH(
 
         binding.Title.isVisible = note.title.isNotEmpty()
         binding.Note.isVisible = note.body.isNotEmpty()
+
+        binding.contactname.isVisible = note.name.isNotEmpty()
+        binding.iconperson.isVisible = note.name.isNotEmpty()
+
+        binding.phonenumber.isVisible = note.phoneNumber.isNotEmpty()
+        binding.iconphone.isVisible = note.phoneNumber.isNotEmpty()
     }
+
+
 
     private fun bindList(list: BaseNote) {
         binding.Note.isVisible = false
@@ -83,6 +112,13 @@ class BaseNoteVH(
 
         binding.Title.text = list.title
         binding.Title.isVisible = list.title.isNotEmpty()
+
+        binding.contactname.isVisible = list.name.isNotEmpty()
+        binding.iconperson.isVisible = list.name.isNotEmpty()
+
+        binding.phonenumber.isVisible = list.phoneNumber.isNotEmpty()
+        binding.iconphone.isVisible = list.phoneNumber.isNotEmpty()
+
 
         val maxItems = settingsHelper.getMaxItems()
         val filteredList = list.items.take(maxItems)
@@ -113,6 +149,7 @@ class BaseNoteVH(
         return when (baseNote.type) {
             Type.NOTE -> baseNote.title.isBlank() && baseNote.body.isBlank()
             Type.LIST -> baseNote.title.isBlank() && baseNote.items.isEmpty()
+            Type.PHONENUMBER -> baseNote.phoneNumber.isBlank() && baseNote.phoneNumber.isBlank()
         }
     }
 
@@ -120,6 +157,7 @@ class BaseNoteVH(
         return when (baseNote.type) {
             Type.NOTE -> R.string.empty_note
             Type.LIST -> R.string.empty_list
+            Type.PHONENUMBER -> R.string.empty_phone_list
         }
     }
 

@@ -247,6 +247,7 @@ class BaseNoteModel(private val app: Application) : AndroidViewModel(app) {
         val body = when (baseNote.type) {
             Type.NOTE -> baseNote.body
             Type.LIST -> baseNote.items.getBody()
+            Type.PHONENUMBER -> baseNote.name
         }
         val fileName = if (title.isEmpty()) {
             val words = body.split(" ").take(2)
@@ -292,6 +293,7 @@ class BaseNoteModel(private val app: Application) : AndroidViewModel(app) {
         val body = when (baseNote.type) {
             Type.NOTE -> baseNote.body
             Type.LIST -> baseNote.items.getBody()
+            Type.PHONENUMBER -> baseNote.name
         }
 
         if (baseNote.title.isNotEmpty()) {

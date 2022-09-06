@@ -94,7 +94,7 @@ abstract class NotallyFragment : Fragment(), OperationsParent, ItemListener {
                 when (item.type) {
                     Type.NOTE -> goToActivity(TakeNote::class.java, item)
                     Type.LIST -> goToActivity(MakeList::class.java, item)
-              //      Type.PHONENUMBER -> goToActivity(MakeContacts::class.java, item)
+                    Type.PHONENUMBER -> goToActivity(MakeContacts::class.java, item)
                 }
             }
         }
@@ -175,7 +175,7 @@ abstract class NotallyFragment : Fragment(), OperationsParent, ItemListener {
         when (baseNote.type) {
             Type.NOTE -> shareNote(baseNote.title, baseNote.body.applySpans(baseNote.spans))
             Type.LIST -> shareNote(baseNote.title, baseNote.items)
-        //    Type.PHONENUMBER -> shareNote(baseNote.title, baseNote.name)
+            Type.PHONENUMBER -> sharePhoneNumber(baseNote.name, baseNote.phoneNumber,baseNote.body)
         }
     }
 
