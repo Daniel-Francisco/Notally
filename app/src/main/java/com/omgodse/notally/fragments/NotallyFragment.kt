@@ -175,6 +175,7 @@ abstract class NotallyFragment : Fragment(), OperationsParent, ItemListener {
         when (baseNote.type) {
             Type.NOTE -> shareNote(baseNote.title, baseNote.body.applySpans(baseNote.spans))
             Type.LIST -> shareNote(baseNote.title, baseNote.items)
+        //    Type.PHONENUMBER -> shareNote(baseNote.title, baseNote.name)
         }
     }
 
