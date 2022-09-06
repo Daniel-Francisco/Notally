@@ -71,13 +71,17 @@ class BaseNoteVH(
     private fun bindContacts(note: BaseNote) {
         binding.LinearLayout.isVisible = false
 
+
+
         binding.Title.text = note.title
         binding.Note.text = note.body.applySpans(note.spans)
+
+        binding.iconphones.isVisible = true
 
         binding.Title.isVisible = note.title.isNotEmpty()
         binding.Note.isVisible = note.body.isNotEmpty()
 
-
+        binding.Title.isVisible = false //
         binding.phonenumber.text = note.phoneNumber
         binding.phonenumber.isVisible = note.phoneNumber.isNotEmpty()
         binding.iconphone.isVisible = note.phoneNumber.isNotEmpty()
@@ -100,6 +104,8 @@ class BaseNoteVH(
         binding.contactname.isVisible = note.name.isNotEmpty()
         binding.iconperson.isVisible = note.name.isNotEmpty()
 
+        binding.iconnotes.isVisible = true
+
         binding.phonenumber.isVisible = note.phoneNumber.isNotEmpty()
         binding.iconphone.isVisible = note.phoneNumber.isNotEmpty()
     }
@@ -119,6 +125,7 @@ class BaseNoteVH(
         binding.phonenumber.isVisible = list.phoneNumber.isNotEmpty()
         binding.iconphone.isVisible = list.phoneNumber.isNotEmpty()
 
+        binding.iconlist.isVisible = true
 
         val maxItems = settingsHelper.getMaxItems()
         val filteredList = list.items.take(maxItems)
