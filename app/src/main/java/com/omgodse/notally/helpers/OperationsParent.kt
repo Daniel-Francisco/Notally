@@ -31,12 +31,12 @@ interface OperationsParent {
         accessContext().startActivity(chooser)
     }
 
-    fun sharePhoneNumber(contact: String?, number: String?,body: CharSequence?) {
+    fun sharePhoneNumber(contactname: String?, number: String?,body: CharSequence?) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_SUBJECT, contact)
+        intent.putExtra(Intent.EXTRA_SUBJECT, contactname)
         intent.putExtra(TakeNote.EXTRA_SPANNABLE, body)
-        intent.putExtra(Intent.EXTRA_TEXT, number.toString() + " / " +body.toString())
+        intent.putExtra(Intent.EXTRA_TEXT, contactname .toString() + " | "+number.toString() + " | " +body.toString())
         val chooser = Intent.createChooser(intent, accessContext().getString(R.string.share_contact))
         accessContext().startActivity(chooser)
     }
