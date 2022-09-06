@@ -88,6 +88,7 @@ abstract class NotallyActivity : AppCompatActivity(), OperationsParent {
             R.id.Archive -> archiveNote()
             R.id.Restore -> restoreNote()
             R.id.Unarchive -> restoreNote()
+            R.id.DeletePermanently -> deleteNoteForever()
             R.id.DeleteForever -> deleteNoteForever()
         }
         return super.onOptionsItemSelected(item)
@@ -125,6 +126,7 @@ abstract class NotallyActivity : AppCompatActivity(), OperationsParent {
         }
     }
 
+
     private fun deleteNote() {
         model.moveBaseNoteToDeleted()
         onBackPressed()
@@ -133,11 +135,18 @@ abstract class NotallyActivity : AppCompatActivity(), OperationsParent {
     private fun restoreNote() {
         model.restoreBaseNote()
         onBackPressed()
+        goToActivity(MainActivity::class.java)
+    }
+
+    internal fun goToActivity(activity: Class<*>) {
+        val intent = Intent(applicationContext, activity)
+        startActivity(intent)
     }
 
     private fun archiveNote() {
         model.moveBaseNoteToArchive()
         onBackPressed()
+        goToActivity(MainActivity::class.java)
     }
 
     private fun deleteNoteForever() {

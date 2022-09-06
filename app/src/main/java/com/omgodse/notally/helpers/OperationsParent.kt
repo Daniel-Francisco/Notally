@@ -31,6 +31,16 @@ interface OperationsParent {
         accessContext().startActivity(chooser)
     }
 
+    fun sharePhoneNumber(contactname: String?, number: String?,body: CharSequence?) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_SUBJECT, contactname)
+        intent.putExtra(TakeNote.EXTRA_SPANNABLE, body)
+        intent.putExtra(Intent.EXTRA_TEXT, contactname .toString() + " | "+number.toString() + " | " +body.toString())
+        val chooser = Intent.createChooser(intent, accessContext().getString(R.string.share_contact))
+        accessContext().startActivity(chooser)
+    }
+
     fun shareNote(title: String?, items: List<ListItem>?) = shareNote(title, items.getBody())
 
 

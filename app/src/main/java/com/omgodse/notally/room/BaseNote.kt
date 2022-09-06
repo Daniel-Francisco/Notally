@@ -19,16 +19,25 @@ data class BaseNote(
     val body: String,
     val spans: List<SpanRepresentation>,
     val items: List<ListItem>,
+    val name: String,
+    val phoneNumber: String,
+    val email: String,
 ) : Item(ViewType.NOTE), Parcelable {
 
     companion object {
 
         fun createNote(id: Long, folder: Folder, title: String, pinned: Boolean, timestamp: Long, labels: HashSet<String>, body: String, spans: List<SpanRepresentation>): BaseNote {
-            return BaseNote(id, Type.NOTE, folder, title, pinned, timestamp, labels, body, spans, emptyList())
+            return BaseNote(id, Type.NOTE, folder, title, pinned, timestamp, labels, body, spans, emptyList(),"","","")
         }
 
         fun createList(id: Long, folder: Folder, title: String, pinned: Boolean, timestamp: Long, labels: HashSet<String>, items: List<ListItem>): BaseNote {
-            return BaseNote(id, Type.LIST, folder, title, pinned, timestamp, labels, String(), emptyList(), items)
+            return BaseNote(id, Type.LIST, folder, title, pinned, timestamp, labels, String(), emptyList(), items ,"","","")
         }
+
+        fun createPhoneNumbers(id: Long, folder: Folder, title: String, pinned: Boolean, timestamp: Long, labels: HashSet<String>, body: String, spans: List<SpanRepresentation>, name: String, phoneNumber :String, email :String): BaseNote {
+            return BaseNote(id, Type.PHONENUMBER, folder, title, pinned, timestamp, labels, body, spans, emptyList(),name,phoneNumber,email)
+        }
+
+
     }
 }

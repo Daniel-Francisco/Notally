@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.omgodse.notally.R
+import com.omgodse.notally.activities.MainActivity
+import com.omgodse.notally.activities.MakeContacts
 import com.omgodse.notally.activities.MakeList
 import com.omgodse.notally.activities.TakeNote
 import com.omgodse.notally.databinding.FragmentNotesBinding
@@ -92,6 +94,7 @@ abstract class NotallyFragment : Fragment(), OperationsParent, ItemListener {
                 when (item.type) {
                     Type.NOTE -> goToActivity(TakeNote::class.java, item)
                     Type.LIST -> goToActivity(MakeList::class.java, item)
+                    Type.PHONENUMBER -> goToActivity(MakeContacts::class.java, item)
                 }
             }
         }
@@ -145,13 +148,17 @@ abstract class NotallyFragment : Fragment(), OperationsParent, ItemListener {
                 arrayOf(pin, share, labels, export, moreOptions)
             }
             Folder.DELETED -> {
-                val restore = Operation(R.string.restore, R.drawable.restore) { model.restoreBaseNote(baseNote.id) }
+                val restore = Operation(R.string.restore, R.drawable.restore) { model.restoreBaseNote(baseNote.id)
+                    goToActivity(MainActivity::class.java, baseNote) }
                 val deleteForever = Operation(R.string.delete_forever, R.drawable.delete) { deleteBaseNote(baseNote) }
                 arrayOf(restore, deleteForever)
+
             }
             Folder.ARCHIVED -> {
-                val unarchive = Operation(R.string.unarchive, R.drawable.unarchive) { model.restoreBaseNote(baseNote.id) }
+                val unarchive = Operation(R.string.unarchive, R.drawable.unarchive) { model.restoreBaseNote(baseNote.id)
+                    goToActivity(MainActivity::class.java, baseNote)}
                 arrayOf(unarchive)
+
             }
         }
         showMenu(*operations)
@@ -168,6 +175,7 @@ abstract class NotallyFragment : Fragment(), OperationsParent, ItemListener {
         when (baseNote.type) {
             Type.NOTE -> shareNote(baseNote.title, baseNote.body.applySpans(baseNote.spans))
             Type.LIST -> shareNote(baseNote.title, baseNote.items)
+            Type.PHONENUMBER -> sharePhoneNumber(baseNote.name, baseNote.phoneNumber,baseNote.body)
         }
     }
 

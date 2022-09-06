@@ -42,6 +42,10 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".activities.MakeContacts"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".activities.TakeNote"
             android:windowSoftInputMode="adjustResize">
 

@@ -19,4 +19,15 @@
             android:targetClass="com.omgodse.notally.activities.MakeList"
             android:targetPackage="com.omgodse.notally" />
     </shortcut>
+
+
+    <shortcut
+        android:icon="@drawable/phone"
+        android:shortcutId="makeList"
+        android:shortcutShortLabel="@string/make_contact">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.omgodse.notally.activities.MakeContacts"
+            android:targetPackage="com.omgodse.notally" />
+    </shortcut>
 </shortcuts>

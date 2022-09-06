@@ -247,6 +247,7 @@ class BaseNoteModel(private val app: Application) : AndroidViewModel(app) {
         val body = when (baseNote.type) {
             Type.NOTE -> baseNote.body
             Type.LIST -> baseNote.items.getBody()
+            Type.PHONENUMBER -> baseNote.name
         }
         val fileName = if (title.isEmpty()) {
             val words = body.split(" ").take(2)
@@ -269,6 +270,8 @@ class BaseNoteModel(private val app: Application) : AndroidViewModel(app) {
             .put(XMLTags.Title, baseNote.title)
             .put(XMLTags.Pinned, baseNote.pinned)
             .put(XMLTags.DateCreated, baseNote.timestamp)
+            .put(XMLTags.name, baseNote.name)
+            .put(XMLTags.phoneNumber, baseNote.phoneNumber)
             .put("labels", labels)
 
         when (baseNote.type) {
@@ -281,6 +284,13 @@ class BaseNoteModel(private val app: Application) : AndroidViewModel(app) {
                 val items = JSONArray(baseNote.items.map { item -> item.toJSONObject() })
                 jsonObject.put("items", items)
             }
+            Type.PHONENUMBER -> {
+                val spans = JSONArray(baseNote.spans.map { representation -> representation.toJSONObject() })
+                jsonObject.put(XMLTags.name, baseNote.name)
+                jsonObject.put(XMLTags.phoneNumber, baseNote.phoneNumber)
+                jsonObject.put(XMLTags.Body, baseNote.body)
+                jsonObject.put("spans", spans)
+            }
         }
 
         return jsonObject.toString(2)
@@ -292,6 +302,7 @@ class BaseNoteModel(private val app: Application) : AndroidViewModel(app) {
         val body = when (baseNote.type) {
             Type.NOTE -> baseNote.body
             Type.LIST -> baseNote.items.getBody()
+            Type.PHONENUMBER -> baseNote.name
         }
 
         if (baseNote.title.isNotEmpty()) {

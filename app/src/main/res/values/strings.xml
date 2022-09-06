@@ -17,6 +17,7 @@
     <string name="unarchive">Unarchive</string>
     <string name="delete_all">Delete all</string>
     <string name="delete_forever">Delete forever</string>
+    <string name="delete_permanently">Delete Permanantly</string>
 
     <!-- Pinning -->
     <string name="pin">Pin</string>
@@ -27,6 +28,7 @@
     <!-- Chooser dialog hints -->
     <string name="view_note">View note…</string>
     <string name="share_note">Share note…</string>
+    <string name="share_contact">Share note…</string>
 
     <!-- Dialogs -->
     <string name="save">Save</string>
@@ -34,8 +36,10 @@
     <string name="cancel">Cancel</string>
     <string name="open_link">Open link</string>
     <string name="make_list">Make list</string>
+    <string name="make_contact">Create Contact Info</string>
     <string name="take_note">Take note</string>
     <string name="add_label">Add label</string>
+    <string name="add_phone_number">Add Phone Number</string>
     <string name="export">Export</string>
     <string name="more_options">More options</string>
     <string name="pdf" translatable="false">PDF</string>
@@ -74,10 +78,15 @@
     <string name="saved_to_notally">Saved to Notally</string>
     <string name="empty_note">Empty note</string>
     <string name="empty_list">Empty list</string>
+    <string name="empty_phone_list">Empty Phone Numbers</string>
     <string name="discarded_empty_note">Discarded empty note</string>
     <string name="discarded_empty_list">Discarded empty list</string>
     <string name="cant_open_link">Can\'t open link</string>
     <string name="something_went_wrong">Something went wrong. Please try again.</string>
+
+    <string name="hint_name">Enter the Name.</string>
+    <string name="hint_number">Enter the Phone Number</string>
+    <string name="hint_email">Enter the Email Address</string>
 
     <!-- Settings Page -->
     <string name="appearance">Appearance</string>

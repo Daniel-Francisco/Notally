@@ -11,6 +11,8 @@ object XMLTags {
     const val ListItem = "item"
     const val ListItemText = "text"
     const val ListItemChecked = "checked"
+    const val name = "name"
+    const val phoneNumber = "phoneNumber"
 
     const val Span = "span"
     const val Start = "start"
